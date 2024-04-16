@@ -56,11 +56,9 @@ def update_viagem(destino_id):
 #Deletando uma viagem
 @app.route('/viagens/<int:destino_id>', methods=['DELETE'])
 def delete_viagem(destino_id):
-    for viagem in viagens:
-        if viagem['id']==destino_id:
-            viagens.remove(viagem)
-            return {"data":"Viagem deletada com sucesso"}
-        return{'error':'Viagem não encontrada'}
+    bd.session.query(bd.Viagens).filter_by(id = destino_id).delete()
+    bd.session.commit()
+    return Response(status=200)
     
 #corre o flask
 if __name__ =='__main__':
