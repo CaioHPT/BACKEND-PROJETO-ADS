@@ -5,6 +5,14 @@ import bd
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/viagem', methods=['GET'])
+def get_viagem_by_destino():
+    viagem = request.args.get('destino')
+    viagens = bd.session.query(bd.Viagens).where(bd.Viagens.destino.like(f"%{viagem}%"))
+    viagens_json = [viagem.to_json() for viagem in viagens]
+    return Response(json.dumps(viagens_json), status=200, mimetype="application/json")
+    
+
 #Procurar todas as viagens
 @app.route('/viagens', methods=['GET'])
 def get_viagens():
