@@ -30,14 +30,8 @@ class Viagens (Base):
         "valor": self.valor,
         "urlFoto": self.urlfoto
      }
-
-#Criar tabela no banco de dados
-
+  
 Base.metadata.create_all(engine)
-
-#Classes
-#pacote = Viagens(origem = 'São Paulo', destino = 'Rio de Janeiro', ida = 2024312, volta = 2024315)
-
 #Sessão
 from sqlalchemy.orm import sessionmaker
 
@@ -45,24 +39,3 @@ Session = sessionmaker(bind=engine)
 #Session
 
 session = Session()
-
-#Insert
-#session.add(pacote)
-#session.commit()
-
-#Adiocionar dados, smp usar o commit apos as inclusoes # session.commit'()'
-#session.add_all([
-#    Viagens(origem = 'Minas Gerais', destino = 'Rio de Janeiro', ida = 12102024, volta = 15102024),
-#   Viagens(origem = 'São Paulo', destino = 'Italia', ida = 12102024, volta = 12102029),
-#  Viagens(origem = 'São Paulo', destino = 'Espanha', ida = 12102024, volta = 12102029),
-# ])
-
-
-#session.new
-
-#session.commit()
-
-#Query para consulta
-#for instance in session.query(Viagens).order_by(Viagens.id):
-#    print(instance.origem, instance.destino, instance.ida, instance.volta)
-
